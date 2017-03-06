@@ -22,9 +22,8 @@ gauge-types:
   MissionStateGaugeT:
     commands:
       location: "MS.setCurrentLocation(double,double,double)"
-      charge: "MS.setBatteryCharge(double)"
-      deadline: "MS.setDeadline(long)"
-      clock: "MS.setCurrentTime(double)"
+      ground-plane: "MS.setGroundPlaneError(double,double)"
+      calibration: "MS.setCalibrationError(double, double, double, double, double, double)"
     setupParams:
       targetIP:
         type: String
@@ -57,7 +56,6 @@ gauge-types:
       targetProbeType:
         type: String
         default: ~
-        
 
 gauge-instances:
   IGG1:
@@ -78,9 +76,8 @@ gauge-instances:
     model: RobotAndEnvironmentState:MissionState
     commands:
       location: "ms.setCurrentLocation($<x>,$<y>,$<w>)"
-      charge: "ms.setBatteryCharge($<c>)"
-      deadline: "ms.setDeadline($<d>)"
-      clock: "ms.setCurrentTime($<c>)"
+      ground-plane: "ms.setGroundPlaneError($<t>,$<r>)"
+      calibration: "ms.setCalibrationError($<rot_err>, $<rot_scale>, $<t_err>, $<t_scale>, $<rv>, $<tv>)"
     setupValues:
       targetIP: "${customize.system.target.master}"
     configValues:

@@ -1,7 +1,7 @@
 gauge-types:
   InstructionGraphProgressGaugeT:
     commands:
-      current-instruction: "IG.setExecutingInstruction(String,String)"
+      current-instruction: "IG.setExecutingInstruction(String)"
       current-failed: "IG.setExecutionFailed(String)"
       new-ig: "IG.setInstructions(String)"
     setupParams:
@@ -23,8 +23,7 @@ gauge-types:
     commands:
       location: "MS.setCurrentLocation(double,double,double)"
       charge: "MS.setBatteryCharge(double)"
-      deadline: "MS.setDeadline(long)"
-      clock: "MS.setCurrentTime(double)"
+      deadline: "MS.setDeadline(string)"
     setupParams:
       targetIP:
         type: String
@@ -64,7 +63,7 @@ gauge-instances:
     type: InstructionGraphProgressGaugeT
     model: "ExecutingInstructionGraph:InstructionGraphProgress"
     commands:
-      current-instruction: "cig.setExecutingInstruction($<node>,$<state>)"
+      current-instruction: "cig.setExecutingInstruction($<node>)"
       current-failed: "cig.setExecutionFailed($<node>)"
       new-ig: "igs.setInstructions($<ig>)"
     setupValues:
@@ -80,7 +79,6 @@ gauge-instances:
       location: "ms.setCurrentLocation($<x>,$<y>,$<w>)"
       charge: "ms.setBatteryCharge($<c>)"
       deadline: "ms.setDeadline($<d>)"
-      clock: "ms.setCurrentTime($<c>)"
     setupValues:
       targetIP: "${customize.system.target.master}"
     configValues:
@@ -91,7 +89,7 @@ gauge-instances:
     type: BRASSTargetWaypointGaugeT
     model: RobotAndEnvironmentState:MissionState
     commands:
-      target: "ms.setTargetWaypoint($<w>)"
+      target: "ms.setTargetWaypoint($<w>)
     setupValues:
       targetIP: "${customize.system.target.master}"
     configValues:

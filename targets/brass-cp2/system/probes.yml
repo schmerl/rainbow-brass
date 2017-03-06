@@ -17,17 +17,7 @@ probes:
       period: 2000
       args.length: 2
       args.0: "${rainbow.path}/system/probes/rostopicprobe.sh"
-      # /amcl_pose/pose/pose/position:1 will report the following yaml, every second
-      # topic: "/amcl_pose/pose/pose/position"
-      # x : float
-      # y : float
-      #
-      # /ig_action_server/feedback/feedback/sequence will report every message reported to feedback
-      # topic: "/ig_action_server/feedback/feedback/sequence"
-      # feedback: String
-      #   where feedback will either be the pattern: VertexNumber:Instruction:STARTED|SUCCEEDED|FAILED
-      #     from the instruction graph, or "Finished!" when the instruction graph is completed.
-      args.1: "/amcl_pose/pose/pose:1 /ig_action_server/feedback/feedback/sequence /energy_monitor/voltage:1 /notify_user /clock:1"
+      args.1: "/amcl_pose/pose/pose:1 /ig_action_server/feedback/feedback/sequence /calibration/calibration_error"
       
   BRASSTargetProbe:
     # Probe to report to Rainbow what the target node is
@@ -37,3 +27,4 @@ probes:
     scriptInfo: 
       path: "${rainbow.path}/system/probes/rostargetprobe.sh"
       argument: "/test/data"
+
